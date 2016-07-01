@@ -61,6 +61,12 @@ def F(key=None,value=None,path='.'):
         op.close()
 
 def bga(req,data={}):
+    """
+    tmp code as a view in blog
+    :param req:
+    :param data:
+    :return:
+    """
     req = req
     from django.template import loader
     return loader.render_to_string('bga.html',data)
