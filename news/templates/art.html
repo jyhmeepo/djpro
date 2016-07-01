@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="" method="post">
+    <table>{% csrf_token %}
+    {{ name }}
+    </table>
+    <input type="submit">
+</form>
+
+{% for x in re %}
+    <div>
+    <span>{{ x.name }}</span>
+    <span>{{ x.content }}</span>
+    </div>
+{% endfor %}
+
+
+</body>
+</html>
