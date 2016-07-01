@@ -8,3 +8,4 @@ import re
 from django.core.urlresolvers import reverse
 
 print(1212)
+print(time.time())
