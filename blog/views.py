@@ -67,8 +67,9 @@ def blogcon(req,id):
 
 def blog2(req):
     data = {}
-    Period(name='dage2').save()
-    
+    # Period.objects.create(name='aass')
+    # Period.objects.filter(name = 'aass')
+
     # return HttpResponse(re)
     return render(req,'blog2.html',data)
 

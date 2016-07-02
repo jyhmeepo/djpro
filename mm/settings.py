@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'task',
     'blog',
     'inv',
+    'read',
 ]
 
 MIDDLEWARE_CLASSES = [

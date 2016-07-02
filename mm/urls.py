@@ -21,6 +21,7 @@ from task.views import *
 from blog.views import *
 
 from blog.sec import *
+from read.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -35,6 +36,8 @@ urlpatterns = [
 
     # url(r'^about/$', About.as_view()),
     url(r'^about/$', bga),
+
+    url(r'^read/$', read),
 
     url(r'^userregister/$', userregister),
     url(r'^userlogin/$', userlogin),
