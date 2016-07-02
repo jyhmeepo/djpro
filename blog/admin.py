@@ -18,6 +18,10 @@ admin.site.register(Que,Quea)
 admin.site.register(QueT)
 
 admin.site.register(Pro)
-
 admin.site.register(Inv)
 
+admin.site.register(Xm)
+admin.site.register(Cy)
+
+admin.site.register(Xs)
+admin.site.register(Kp)

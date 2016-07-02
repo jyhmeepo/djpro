@@ -44,3 +44,29 @@ class Inv(models.Model):
     project2 = models.CharField(max_length=255,default='',choices={("xm1","shiyou"),("xm2","dianxin")})
     def __str__(self):
         return self.iname
+
+
+class Xm(models.Model):
+    xname = models.CharField(max_length=255,default='')
+    value = models.IntegerField(default=0)
+    def __str__(self):
+        return self.xname
+
+class Cy(models.Model):
+    cname = models.CharField(max_length=255, default='')
+    old = models.IntegerField(default=0)
+    xm = models.ManyToManyField(Xm)
+    def __str__(self):
+        return self.cname
+
+
+class Kp(models.Model):
+    kname = models.CharField(max_length=255, default='')
+    def __str__(self):
+        return self.kname
+
+class Xs(models.Model):
+    xname = models.CharField(max_length=255, default='')
+    xm = models.OneToOneField(Kp)
+    def __str__(self):
+        return self.xname
