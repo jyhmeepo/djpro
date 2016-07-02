@@ -66,7 +66,10 @@ def blogcon(req,id):
     return render(req, 'blogcon.html', data)
 
 def blog2(req):
-    return HttpResponse(12)
+    data = {}
+    data['re'] = Xs.objects.all()
+    # return HttpResponse(re)
+    return render(req,'blog2.html',data)
 
 ######################################################################################
 def userregister(req):

@@ -68,5 +68,7 @@ class Kp(models.Model):
 class Xs(models.Model):
     xname = models.CharField(max_length=255, default='')
     xm = models.OneToOneField(Kp)
+    def full(self):
+        return self.xname+'kkk'
     def __str__(self):
         return self.xname
