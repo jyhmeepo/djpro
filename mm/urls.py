@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^$', admin.site.urls),
 
     url(r'^blog/$', blog),
+    url(r'^blog2/$', blog2),
     url(r'^blogadd/', blogadd),
     url(r'^blogde/', blogde),
     url(r'^blog/(\d*)\.html$', blogcon,name='blogcontent'),

@@ -65,6 +65,9 @@ def blogcon(req,id):
     data['art']=Art.objects.get(id=id)
     return render(req, 'blogcon.html', data)
 
+def blog2(req):
+    return HttpResponse(12)
+
 ######################################################################################
 def userregister(req):
     data={}
