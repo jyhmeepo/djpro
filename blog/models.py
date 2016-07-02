@@ -72,3 +72,16 @@ class Xs(models.Model):
         return self.xname+'kkk'
     def __str__(self):
         return self.xname
+
+
+class Base(models.Model):
+    createtime = models.IntegerField(default=0)
+
+class Series(Base):
+    name = models.CharField(max_length=255,default='')
+
+
+class Period(models.Model):
+    name = models.CharField(max_length=255,default='')
+    def __str__(self):
+        return self.name

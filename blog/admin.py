@@ -25,3 +25,4 @@ admin.site.register(Cy)
 
 admin.site.register(Xs)
 admin.site.register(Kp)
+admin.site.register(Period)

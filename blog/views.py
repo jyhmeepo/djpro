@@ -67,7 +67,8 @@ def blogcon(req,id):
 
 def blog2(req):
     data = {}
-    data['re'] = Xs.objects.all()
+    Period(name='dage2').save()
+    
     # return HttpResponse(re)
     return render(req,'blog2.html',data)
 
