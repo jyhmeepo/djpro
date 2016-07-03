@@ -11,10 +11,10 @@ def read(req):
         # sname = req.POST['sname']
 
         # Wen.objects.create(wname = wname,tag=Tags.objects.create(tname='xins'))
-        v = Wen.objects.get(id=3)
+        # v = Wen.objects.get(id=3)
         # v = Wen.objects.all()
-        t1 = Tags.objects.get(id=4)
-        v.tag.add(t1)
+        # t1 = Tags.objects.get(id=4)
+        # v.tag.add(t1)
         # v.save()
 
         # t1 = Tags.objects.create(sname = 'xins')
@@ -24,7 +24,7 @@ def read(req):
 
         return HttpResponseRedirect("/read/")
 
-    data['re'] = Wen.objects.all().order_by("-id")
+    data['re'] = Wen.objects.values().filter(wname__regex=r'1')
     # data['re'] = Wen.objects.filter(id__gte = 2)
 
     return render(req,'read.html',data)
