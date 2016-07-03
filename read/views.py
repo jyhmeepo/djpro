@@ -23,7 +23,9 @@ def read(req):
 
 
         return HttpResponseRedirect("/read/")
-    data['re'] = Wen.objects.all()
+
+    data['re'] = Wen.objects.all().order_by("-id")
+    # data['re'] = Wen.objects.filter(id__gte = 2)
 
     return render(req,'read.html',data)
     # return HttpResponse('read')
