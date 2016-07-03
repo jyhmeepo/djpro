@@ -7,10 +7,11 @@ def read(req):
     data = {}
 
     if req.method == "POST":
-        sname = req.POST['sname']
-        Series.objects.create(sname = sname)
+        wname = req.POST['wname']
+        # sname = req.POST['sname']
+        Video.objects.create(wname = wname,tag=Tags(id=1))
         return HttpResponseRedirect("/read/")
-    data['re'] = Series.objects.all()
+    data['re'] = Wen.objects.all()
 
     return render(req,'read.html',data)
     # return HttpResponse('read')

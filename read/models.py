@@ -30,3 +30,15 @@ class Period(models.Model):
     password = models.CharField(max_length=255,default='')
     def __str__(self):
         return self.pname
+
+class Video(models.Model):
+    sname = models.ForeignKey(Series, default='')
+    vname = models.CharField(max_length=255,default='')
+    def __str__(self):
+        return self.vname
+
+class Wen(models.Model):
+    tag = models.ManyToManyField(Tags)
+    wname = models.CharField(max_length=255,default='')
+    def __str__(self):
+        return self.wname
