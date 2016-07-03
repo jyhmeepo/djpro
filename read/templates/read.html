@@ -6,5 +6,16 @@
 </head>
 <body>
 
+<form action="" method="post">
+    {% csrf_token %}
+    <input type="text" name="sname">
+    <input type="submit">
+</form>
+<hr>
+{% for x in re %}
+<div>{{ x.sname }}-</div>
+{% endfor %}
+
+
 </body>
 </html>
