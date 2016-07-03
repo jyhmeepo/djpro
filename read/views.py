@@ -7,9 +7,21 @@ def read(req):
     data = {}
 
     if req.method == "POST":
-        wname = req.POST['wname']
+        # wname = req.POST['wname']
         # sname = req.POST['sname']
-        Video.objects.create(wname = wname,tag=Tags(id=1))
+
+        # Wen.objects.create(wname = wname,tag=Tags.objects.create(tname='xins'))
+        v = Wen.objects.get(id=3)
+        # v = Wen.objects.all()
+        t1 = Tags.objects.get(id=4)
+        v.tag.add(t1)
+        # v.save()
+
+        # t1 = Tags.objects.create(sname = 'xins')
+        # v = Video(wname=wname)
+
+
+
         return HttpResponseRedirect("/read/")
     data['re'] = Wen.objects.all()
 
