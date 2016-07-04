@@ -26,7 +26,7 @@ def read(req):
 
     data['re'] = Wen.objects.raw("select * from read_wen")
     # data['re'] = Wen.objects.values().filter(wname__regex=r'1')
-    # data['re'] = Wen.objects.filter(id__gte = 2)
+    # data['re'] = Wen.objects.filter(id__gte = 2)12
 
     return render(req,'read.html',data)
     # return HttpResponse('read')
