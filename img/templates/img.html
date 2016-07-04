@@ -5,12 +5,20 @@
     <a href="/pub/" class="btn btn-danger">发布照片</a>
     <a href="/du/">read</a>
 </div>
+    <hr>
     <div class="row">
     {% for x in period %}
         <div class="col-xs-6 col-sm-3 col-lg-2">
             <a href="/{{ x.id }}.html" class="">{{ x.pname }}</a>
         </div>
     {% endfor %}
+    </div>
+    <hr>
+    <div class="">
+    {% for x in series %}
+        <a href="/series/{{ x.id }}/">{{ x.sname }}</a>
+    {% endfor %}
+
     </div>
     
 {% endblock %}

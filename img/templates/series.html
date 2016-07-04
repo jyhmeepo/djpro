@@ -1,0 +1,11 @@
+{% extends 'img_base.html' %}
+{% block content %}
+
+series
+
+    {% for x in period %}
+        <a href="/{{ x.id }}.html">{{ x.pname }}</a>
+    {% endfor %}
+
+    
+{% endblock %}

@@ -34,13 +34,29 @@ def handle_uploaded_file(f):
             destination.write(chunk)
     return data
 
+def read_period(path,sid=0):
+    data ={}
+    re =read_image(path,"static/img/",)
+    if re['url']:
+        Period.objects.create(pname=re['name'],sid=sid)
+        last =Period.objects.last()
+        for x in re['url']:
+            Image.objects.create(pid = last.id,iurl = x,sid=sid)
+
 # -----------------------------fucntion-end------------------------------------------e
 
 # -----------------------------view-start--------------------------------------------s
 def img(req):
     data={}
     data['period'] = Period.objects.values().order_by("-id")
+    data['series'] = Series.objects.values().order_by("-id")
     return render(req,'img.html',data)
+
+def series(req,sid):
+    data={}
+    data['period'] = Period.objects.filter(sid=sid)
+    return render(req,'series.html',data)
+
 
 def image(req,id):
     data={}
@@ -74,14 +90,7 @@ def show(req):
         data['re'] =last
     return render(req,'show.html',data)
 
-def read_period(path,sid=0):
-    data ={}
-    re =read_image(path,"static/img/",)
-    if re['url']:
-        Period.objects.create(pname=re['name'],sid=sid)
-        last =Period.objects.last()
-        for x in re['url']:
-            Image.objects.create(pid = last.id,iurl = x,sid=sid)
+
 
 
 def du(req):
