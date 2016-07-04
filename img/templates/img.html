@@ -4,12 +4,11 @@
 <div>
     <a href="/pub/" class="btn btn-danger">发布照片</a>
 </div>
-    
-    <div class="" style="margin: 0;padding: 0;">
+    <div class="row">
     {% for x in url %}
-        <div class="col-xs-2" style="margin: 0;padding: 0;">
-            <div class="">{{ x.iname }}</div>
-            <img src="/{{ x.iurl }}" alt="" style="width: 100px;">
+        <div class="col-xs-6 col-sm-3 col-lg-2">
+            <div class="">name:{{ x.iname }}</div>
+            <img src="/{{ x.iurl }}" alt="" style="max-width: 100%">
         </div>
     {% endfor %}
     </div>
