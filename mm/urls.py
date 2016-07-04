@@ -42,7 +42,6 @@ urlpatterns = [
     url(r'^userregister/$', userregister),
     url(r'^userlogin/$', userlogin),
 
-    url(r'^art/', art),
     url(r'^renwu/', renwu),
     url(r'^ren4/$', ren4),
     url(r'^ren4/\d{1,4}\.html$', ren4),
