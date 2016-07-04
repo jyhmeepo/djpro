@@ -3,11 +3,17 @@
 
     <form class="form-group" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <input type="text" name="name" class="form-control" style="margin-bottom: 10px;">
-        <input type="file" name="file[]" class="form-control" style="margin-bottom: 10px;" accept="image/jpeg" multiple>
+        {{ form }}
+{#        <input type="text" name="iname" class="form-control" style="margin-bottom: 10px;">#}
+{#        <input type="file" name="file" class="form-control" style="margin-bottom: 10px;" accept="image/jpeg">#}
+{#        <input type="file" name="file[]" class="form-control" style="margin-bottom: 10px;" accept="image/jpeg" multiple>#}
         <input type="submit" class="form-control btn-success">
     </form>
-    <img src="/{{ url }}" alt="" style="width: 200px;">
+
+    {% if re %}
+        <img src="/{{ url }}" alt="" style="width: 200px;">
+    {% endif %}
+
     {% for x in rr %}
     {{ x }}
     {% endfor %}

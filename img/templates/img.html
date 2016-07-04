@@ -2,14 +2,16 @@
 {% block content %}
 
 <div>
-<a href="/pub/" class="btn btn-danger pull-right">发布照片</a>
+    <a href="/pub/" class="btn btn-danger">发布照片</a>
 </div>
     
+    <div class="" style="margin: 0;padding: 0;">
     {% for x in url %}
-        <div class="">
+        <div class="col-xs-2" style="margin: 0;padding: 0;">
             <div class="">{{ x.iname }}</div>
             <img src="/{{ x.iurl }}" alt="" style="width: 100px;">
         </div>
     {% endfor %}
+    </div>
     
 {% endblock %}
