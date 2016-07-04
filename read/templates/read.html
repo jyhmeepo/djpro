@@ -9,16 +9,25 @@
 
 <div class="container">
 
-<form action="" method="post">
-    {% csrf_token %}
-    <input type="text" name="wname">
+
+<ul class="list-group">
+    <li class="list-group-item">1</li>
+    <li class="list-group-item">1</li>
+    <li class="list-group-item">1</li>
+</ul>
+
+
+{#----------------------------#}
+{#<form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#    <input type="text" name="wname">#}
 {#    <input type="text" name="sname" value="1">#}
-    <input type="submit">
-</form>
-<hr>
-{% for x in re %}
-<div>{{ x.id }}--{{ x.wname }}-</div>
-{% endfor %}
+{#    <input type="submit">#}
+{#</form>#}
+{#<hr>#}
+{#{% for x in re %}#}
+{#<div>{{ x.id }}--{{ x.wname }}-</div>#}
+{#{% endfor %}#}
 
 {{ re }}
 </div>

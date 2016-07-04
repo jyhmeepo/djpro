@@ -2,6 +2,14 @@ from django.shortcuts import render
 from django.http import *
 from .models import *
 # Create your views here.
+from django.template import loader
+
+def liebiao(data={},req=None):
+    d = {}
+    d['re'] = 'shijian'
+    d['re2'] = 'meinv'
+    d['re3'] = 'shuaige'
+    return loader.render_to_string('liebiao.html',d,request=req)
 
 def read(req):
     data = {}
@@ -24,9 +32,9 @@ def read(req):
 
         return HttpResponseRedirect("/read/")
 
-    data['re'] = Wen.objects.raw("select * from read_wen")
+    # data['re'] = Wen.objects.raw("select * from read_wen")
     # data['re'] = Wen.objects.values().filter(wname__regex=r'1')
     # data['re'] = Wen.objects.filter(id__gte = 2)12
-
+    data['re'] = liebiao(req)
     return render(req,'read.html',data)
     # return HttpResponse('read')
