@@ -9,4 +9,9 @@ from django.core.urlresolvers import reverse
 
 # re = os.listdir('1')
 
+from  uuid import *
+
+print(
+    uuid1()
+)
 

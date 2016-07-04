@@ -1,0 +1,11 @@
+{% extends 'img_base.html' %}
+{% block content %}
+
+{{ id }}
+    {% for x in image %}
+        <img src="/{{ x.iurl }}" alt="">
+        {{ x.iurl }}
+    {% endfor %}
+
+    
+{% endblock %}

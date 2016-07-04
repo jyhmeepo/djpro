@@ -22,9 +22,9 @@ def handle_uploaded_file(f):
     :param f:
     :return:
     """
-    import ku
+    import os
     import time
-    file_path = 'static/img/'+str(int(time.time()))+'.'+ku.getext(f.name)
+    file_path = 'static/img/'+str(int(time.time()))+'.'+getext(f.name)
     data = {}
     data['path'] = file_path
     data['name'] = 'name'
@@ -38,8 +38,14 @@ def handle_uploaded_file(f):
 # -----------------------------view-start--------------------------------------------s
 def img(req):
     data={}
-    data['url'] = image.objects.values().order_by("-id")
+    data['period'] = Period.objects.values().order_by("-id")
     return render(req,'img.html',data)
+
+def image(req,id):
+    data={}
+    data['image'] = Image.objects.filter(pid =id)
+    data['id'] = id
+    return render(req,'image.html',data)
 
 def pub(req):
     data={}
@@ -51,19 +57,18 @@ def pub(req):
             dd = handle_uploaded_file(file)
             data['url'] = dd['path']
 
-            image.objects.create(iname=req.POST['iname'],iurl=data['url'])
+            Image.objects.create(iname=req.POST['iname'],iurl=data['url'])
             # data['rr'] = file
             return HttpResponseRedirect("/")
     return render(req,'pub.html',data)
 
 def show(req):
-    import os
-    # re =1
-    # re = os.listdir("static/img")
-    # oldfile = 'static/img/2.jpg'
-    # newfile = 'static/img/222.jpg'
-    # if os.path.exists(oldfile):
-    #     os.rename(oldfile,newfile)
-    rename_dir("static/img")
-    return HttpResponse(12)
+    data ={}
+    re =read_image("static/tmp/","static/img/",)
+    Period.objects.create(pname=re['title'])
+    last =Period.objects.last()
+    for x in re['path']:
+        Image.objects.create(pid = last.id,iurl = x)
+    data['re'] =last
+    return render(req,'show.html',data)
 # -----------------------------view-end---------------------------------------------e

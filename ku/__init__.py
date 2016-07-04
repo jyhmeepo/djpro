@@ -71,11 +71,18 @@ def bga(req,data={}):
     from django.template import loader
     return loader.render_to_string('bga.html',data)
 
-def rename_dir(path):
-    import time
+def read_image(oldpath,newpath=None):
     import os
-    re = os.listdir(path)
+    import uuid
+    if newpath==None:
+        newpath = oldpath
+    re = os.listdir(oldpath)
+    data ={}
+    data['title'] = oldpath
+    data['path'] =[]
     for x in re:
-        oldname = path + x
-        newname = path + str(int(time.time() * 100000)) + '.' + getext(x)
+        oldname = oldpath + x
+        newname = newpath + str(uuid.uuid1()) + '.' + getext(x)
+        data['path'].append(newname)
         os.rename(oldname, newname)
+    return data
