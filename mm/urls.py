@@ -16,7 +16,6 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from news.views import *
 from task.views import *
 from blog.views import *
 
