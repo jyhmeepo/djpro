@@ -1,10 +1,16 @@
 {% extends 'img_base.html' %}
 {% block content %}
 
-    <form class="form-group" action="" method="post">
+    <form class="form-group" action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <input type="text" name="name" class="form-control" style="margin-bottom: 10px;">
-        <input type="file" name="file" class="form-control" style="margin-bottom: 10px;">
+        <input type="file" name="file[]" class="form-control" style="margin-bottom: 10px;" accept="image/jpeg" multiple>
         <input type="submit" class="form-control btn-success">
     </form>
+    <img src="/{{ url }}" alt="" style="width: 200px;">
+    {% for x in rr %}
+    {{ x }}
+    {% endfor %}
+
+
 {% endblock %}

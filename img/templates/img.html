@@ -4,4 +4,12 @@
 <div>
 <a href="/pub/" class="btn btn-danger pull-right">发布照片</a>
 </div>
+    
+    {% for x in url %}
+        <div class="">
+            <div class="">{{ x.iname }}</div>
+            <img src="/{{ x.iurl }}" alt="" style="width: 100px;">
+        </div>
+    {% endfor %}
+    
 {% endblock %}
