@@ -21,10 +21,13 @@ from blog.views import *
 
 from blog.sec import *
 from read.views import *
+from img.views import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', admin.site.urls),
+
+    url(r'^$', img),
+    url(r'^pub/$', pub),
 
     url(r'^blog/$', blog),
     url(r'^blog2/$', blog2),

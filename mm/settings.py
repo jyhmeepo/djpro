@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'task',
     'blog',
+    'img',
     'read',
 ]
 
