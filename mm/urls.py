@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^$', img),
     url(r'^pub/$', pub),
     url(r'^show/$', show),
+    url(r'^du/$', du),
     url(r'^(\d{1,4})\.html$', image),
 
     url(r'^blog/$', blog),

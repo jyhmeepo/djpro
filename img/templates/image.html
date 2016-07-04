@@ -1,11 +1,9 @@
 {% extends 'img_base.html' %}
 {% block content %}
-
 {{ id }}
     {% for x in image %}
-        <img src="/{{ x.iurl }}" alt="">
-        {{ x.iurl }}
+        <div class="col-lg-3">
+            <img src="/{{ x.iurl }}" alt="" style="max-width: 100%;">
+        </div>
     {% endfor %}
-
-    
 {% endblock %}

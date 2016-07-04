@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import *
 from django.http import *
 from ku import *
+import os
 
 
 
@@ -64,11 +65,38 @@ def pub(req):
 
 def show(req):
     data ={}
-    re =read_image("static/tmp/","static/img/",)
-    Period.objects.create(pname=re['title'])
-    last =Period.objects.last()
-    for x in re['path']:
-        Image.objects.create(pid = last.id,iurl = x)
-    data['re'] =last
+    re =read_image("static/tmp/111/","static/img/",)
+    if re['path']:
+        Period.objects.create(pname=re['title'])
+        last =Period.objects.last()
+        for x in re['path']:
+            Image.objects.create(pid = last.id,iurl = x)
+        data['re'] =last
     return render(req,'show.html',data)
+
+def read_period(path,sid=0):
+    data ={}
+    re =read_image(path,"static/img/",)
+    if re['url']:
+        Period.objects.create(pname=re['name'],sid=sid)
+        last =Period.objects.last()
+        for x in re['url']:
+            Image.objects.create(pid = last.id,iurl = x,sid=sid)
+
+
+def du(req):
+    data = {}
+
+    # re =os.listdir('static/tmp/')
+    data['series'] = Series.objects.values()
+    # sid =0
+    if req.method=='POST':
+        sid = req.POST.get('sid', 0)
+        path = 'static/tmp/'
+        path_son = os.listdir(path)
+        for x in path_son:
+            path_whole = path + x + '/'
+            read_period(path_whole,sid)
+        data['path'] = os.listdir(path)
+    return render(req,'du.html',data)
 # -----------------------------view-end---------------------------------------------e

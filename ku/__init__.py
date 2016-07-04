@@ -74,15 +74,20 @@ def bga(req,data={}):
 def read_image(oldpath,newpath=None):
     import os
     import uuid
-    if newpath==None:
-        newpath = oldpath
-    re = os.listdir(oldpath)
-    data ={}
-    data['title'] = oldpath
-    data['path'] =[]
-    for x in re:
-        oldname = oldpath + x
-        newname = newpath + str(uuid.uuid1()) + '.' + getext(x)
-        data['path'].append(newname)
-        os.rename(oldname, newname)
+    import time
+    data = {}
+    data['name'] = oldpath
+    data['url'] = []
+    if os.path.exists(oldpath):
+        if newpath==None:
+            newpath = oldpath
+        re = os.listdir(oldpath)
+        newpathadd = newpath+ time.strftime("%y%m%d") + '/' + str(int(time.time() * 100000)) + '/'
+        os.makedirs(newpathadd)
+        os.rename(oldpath, newpathadd)
+        for x in re:
+            oldname = newpathadd + x
+            newname = newpathadd+ str(uuid.uuid1()) + '.' + getext(x)
+            data['url'].append(newname)
+            os.rename(oldname, newname)
     return data

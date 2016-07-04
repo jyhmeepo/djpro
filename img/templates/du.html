@@ -1,0 +1,15 @@
+{% extends 'img_base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% for x in series %}
+            {% csrf_token %}
+            <input type="radio" name="sid" value="{{ x.id }}">{{ x.sname }}-
+        {% endfor %}
+        <hr>
+        <input type="submit">
+    </form>
+
+    <hr>
+    {{ path }}
+    {{ sid }}
+{% endblock %}

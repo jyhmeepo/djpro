@@ -4,3 +4,4 @@ from .models import *
 
 admin.site.register(Image)
 admin.site.register(Period)
+admin.site.register(Series)

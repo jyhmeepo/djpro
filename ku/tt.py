@@ -6,12 +6,12 @@ import time
 from PIL import Image
 import re
 from django.core.urlresolvers import reverse
-
+import datetime
 # re = os.listdir('1')
 
 from  uuid import *
 
 print(
-    uuid1()
+    time.strftime("%y%m%d")
 )
 
