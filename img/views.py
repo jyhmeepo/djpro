@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from django.http import *
+from ku import *
 
 
 
@@ -54,4 +55,15 @@ def pub(req):
             # data['rr'] = file
             return HttpResponseRedirect("/")
     return render(req,'pub.html',data)
+
+def show(req):
+    import os
+    # re =1
+    # re = os.listdir("static/img")
+    # oldfile = 'static/img/2.jpg'
+    # newfile = 'static/img/222.jpg'
+    # if os.path.exists(oldfile):
+    #     os.rename(oldfile,newfile)
+    rename_dir("static/img")
+    return HttpResponse(12)
 # -----------------------------view-end---------------------------------------------e

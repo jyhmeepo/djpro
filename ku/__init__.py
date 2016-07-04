@@ -70,3 +70,12 @@ def bga(req,data={}):
     req = req
     from django.template import loader
     return loader.render_to_string('bga.html',data)
+
+def rename_dir(path):
+    import time
+    import os
+    re = os.listdir(path)
+    for x in re:
+        oldname = path + x
+        newname = path + str(int(time.time() * 100000)) + '.' + getext(x)
+        os.rename(oldname, newname)
