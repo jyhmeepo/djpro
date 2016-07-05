@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^$', img),
     url(r'^pub/$', pub),
     url(r'^show/$', show),
-    url(r'^du/$', du),
+    url(r'^du/$', read_in_sql),
     url(r'^series/(\d{1,4})/$', series),
     url(r'^(\d{1,4})\.html$', image),
 

@@ -71,7 +71,7 @@ def bga(req,data={}):
     from django.template import loader
     return loader.render_to_string('bga.html',data)
 
-def read_image(oldpath,newpath=None):
+def read_image(oldpath,newpath="static/img/"):
     import os
     import uuid
     import time
@@ -79,8 +79,6 @@ def read_image(oldpath,newpath=None):
     data['name'] = oldpath
     data['url'] = []
     if os.path.exists(oldpath):
-        if newpath==None:
-            newpath = oldpath
         re = os.listdir(oldpath)
         newpathadd = newpath+ time.strftime("%y%m%d") + '/' + str(int(time.time() * 100000)) + '/'
         os.makedirs(newpathadd)

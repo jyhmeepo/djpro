@@ -35,7 +35,6 @@ def handle_uploaded_file(f):
     return data
 
 def read_period(path,sid=0):
-    data ={}
     re =read_image(path,"static/img/",)
     if re['url']:
         Period.objects.create(pname=re['name'],sid=sid)
@@ -66,16 +65,13 @@ def image(req,id):
 
 def pub(req):
     data={}
-    # data['form'] = UpF()
     if req.method=="POST":
         if req.FILES:
             data['re'] = 123
             file = req.FILES['file']
             dd = handle_uploaded_file(file)
             data['url'] = dd['path']
-
             Image.objects.create(iname=req.POST['iname'],iurl=data['url'])
-            # data['rr'] = file
             return HttpResponseRedirect("/")
     return render(req,'pub.html',data)
 
@@ -91,14 +87,9 @@ def show(req):
     return render(req,'show.html',data)
 
 
-
-
-def du(req):
+def read_in_sql(req):
     data = {}
-
-    # re =os.listdir('static/tmp/')
     data['series'] = Series.objects.values()
-    # sid =0
     if req.method=='POST':
         sid = req.POST.get('sid', 0)
         path = 'static/tmp/'
