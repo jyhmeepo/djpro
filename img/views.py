@@ -62,10 +62,16 @@ def series(req,sid):
     return render(req,'series.html',data)
 
 
-def image(req,id):
+def image(req,id,page=1):
     data={}
-    data['image'] = Image.objects.filter(pid =id)
-    data['id'] = id
+    import re
+    # if re.match(r'html',req.path):
+    return HttpResponse(str(req.path)[-1])
+    count = Image.objects.filter(pid =id).count()
+    page = Page(count,2,page,req.path)
+    data['image'] =Image.objects.filter(pid=id)[page.start:page.limit]
+    data['show'] = page.show()
+    # data['req'] =req
     return render(req,'image.html',data)
 
 def pub(req):

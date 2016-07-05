@@ -33,6 +33,7 @@ urlpatterns = [
     url(r'^clear_sql/$', clear_sql),
     url(r'^series/(\d{1,4})/$', series),
     url(r'^(\d{1,4})\.html$', image),
+    url(r'^(\d{1,4})_(\d{1,4})\.html$', image),
 
     url(r'^blog/$', blog),
     url(r'^blog2/$', blog2),

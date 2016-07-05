@@ -140,3 +140,85 @@ def resize_image(inpath,savepath,long=300,mode=1):
         if mode ==5:
             img = img.resize((int(long), int(long)), PIL.Image.ANTIALIAS)
     img.save(savepath)
+
+class Page():
+
+    pagecount=1
+    pagesize=1
+    pagenum=1
+    pagenow=1
+    limit = 1
+    start = 0
+    path = ''
+
+    def __init__(self,pagecount,pagesize=1,pagenow=1,path=''):
+        import math
+        self.pagecount =pagecount
+        self.pagesize = pagesize
+        self.pagenum = math.ceil(pagecount/pagesize)
+        self.pagenow = self.setpagenow(pagenow)
+        self.start = int((self.pagenow-1)*pagesize)
+        self.limit = int(self.start+pagesize)
+        self.path=path
+
+    def setpagenow(self,p):
+        if int(p)<1:
+            p=1
+        if int(p)>self.pagenum:
+            p=self.pagenum
+        return int(p)
+
+    def show(self):
+        import re
+        p = self.path
+        pfirst =''
+        ppre = ''
+        pnext = ''
+        plast = ''
+
+        r= re.match(r'html', str(p))
+
+        if r:
+            pfirst = '1'
+            # ppre = p[:-5] +'_'+str(self.pagenow-1) + p[-5:]
+            ppre = str(self.pagenow - 1) + '.html'
+            pnext = str(self.pagenow + 1) + '.html'
+            plast = str(self.pagenum) + '.html'
+        # r2 = re.match(r'\/$',p)
+        # if r2:
+        #     pass
+            # pfirst = p
+            # ppre = str(self.pagenow - 1) + '.html'
+            # pnext = str(self.pagenow + 1) + '.html'
+            # plast = str(self.pagenum) + '.html'
+
+        # pfirst = str(self.pagenow)+'.html'
+
+        # pfirst = str(self.pagenow)+'.html'
+        # pfirst = p[:-5] + p[-5:]
+        # pfirst = p[:-5] + p[-5:]
+        # return self.path
+
+
+        return """
+        <ul class='pagination'>
+        <li><a href='%s'>first</a></li>
+        <li><a href='%s'>pre</a></li>
+        <li><a href='%s'>next</a></li>
+        <li><a href='%s'>last</a></li>
+        </ul>%s
+        """%(pfirst,ppre,pnext,plast,p)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
