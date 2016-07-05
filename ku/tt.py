@@ -9,9 +9,5 @@ from django.core.urlresolvers import reverse
 import datetime
 # re = os.listdir('1')
 
-from  uuid import *
 
-print(
-    time.strftime("%y%m%d")
-)
-
+resize_image('1.jpg','2.jpg',360,3)

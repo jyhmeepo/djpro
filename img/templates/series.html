@@ -1,11 +1,13 @@
 {% extends 'img_base.html' %}
 {% block content %}
-
-series
-
+    <div class="row">
     {% for x in period %}
-        <a href="/{{ x.id }}.html">{{ x.pname }}</a>
+        <div class="col-sm-2">
+        `<a href="/{{ x.id }}.html">
+            <img src="/{{ x.pface }}" alt="" style="max-width: 100%;">
+            <div>{{ x.pname }}</div>
+        </a>
+        </div>
     {% endfor %}
-
-    
+    </div>
 {% endblock %}

@@ -37,7 +37,12 @@ def handle_uploaded_file(f):
 def read_period(path,sid=0):
     re =read_image(path,"static/img/",)
     if re['url']:
-        Period.objects.create(pname=re['name'],sid=sid)
+        pfaceurlold = re['url'][0]
+        if not os.path.exists("static/img/face/"):
+            os.makedirs("static/img/face/")
+        pfaceurlnew = "static/img/face/ff.jpg"
+        resize_image(pfaceurlold, pfaceurlnew, 360, 5)
+        Period.objects.create(pname=re['name'],sid=sid,pface = pfaceurlnew)
         last =Period.objects.last()
         for x in re['url']:
             Image.objects.create(pid = last.id,iurl = x,sid=sid)
@@ -76,14 +81,8 @@ def pub(req):
     return render(req,'pub.html',data)
 
 def show(req):
-    data ={}
-    re =read_image("static/tmp/111/","static/img/",)
-    if re['path']:
-        Period.objects.create(pname=re['title'])
-        last =Period.objects.last()
-        for x in re['path']:
-            Image.objects.create(pid = last.id,iurl = x)
-        data['re'] =last
+    resize_image("static/1.jpg","static/3.jpg",300,4)
+    return HttpResponse(12)
     return render(req,'show.html',data)
 
 
@@ -99,4 +98,9 @@ def read_in_sql(req):
             read_period(path_whole,sid)
         data['path'] = os.listdir(path)
     return render(req,'du.html',data)
+
+def clear_sql(req):
+    Period.objects.filter(id__lte =600).delete()
+    Image.objects.filter(id__lte =600).delete()
+    return HttpResponse('yes')
 # -----------------------------view-end---------------------------------------------e

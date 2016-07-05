@@ -3,21 +3,29 @@
 
 <div>
     <a href="/pub/" class="btn btn-danger">发布照片</a>
-    <a href="/du/">read</a>
+    <a href="/du/" class="btn btn-danger">read</a>
+    <a href="/clear_sql/" class="btn btn-danger">clear_sql</a>
 </div>
+    <br>
+    {% for x in series %}
+        <a href="/series/{{ x.id }}/">{{ x.sname }}</a>
+    {% endfor %}
     <hr>
     <div class="row">
     {% for x in period %}
         <div class="col-xs-6 col-sm-3 col-lg-2">
-            <a href="/{{ x.id }}.html" class="">{{ x.pname }}</a>
+            <a href="/{{ x.id }}.html" class="">
+                <span class="panel panel-default">
+                    <img src="/{{ x.pface }}" alt="" style="max-width: 100%;">
+                    <div>{{ x.pname }}</div>
+                </span>
+            </a>
         </div>
     {% endfor %}
     </div>
     <hr>
     <div class="">
-    {% for x in series %}
-        <a href="/series/{{ x.id }}/">{{ x.sname }}</a>
-    {% endfor %}
+
 
     </div>
     

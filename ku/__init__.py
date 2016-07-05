@@ -76,7 +76,7 @@ def read_image(oldpath,newpath="static/img/"):
     import uuid
     import time
     data = {}
-    data['name'] = oldpath
+    data['name'] = oldpath.split('/')[-2]
     data['url'] = []
     if os.path.exists(oldpath):
         re = os.listdir(oldpath)
@@ -89,3 +89,54 @@ def read_image(oldpath,newpath="static/img/"):
             data['url'].append(newname)
             os.rename(oldname, newname)
     return data
+
+def resize_image(inpath,savepath,long=300,mode=1):
+    """
+    mode = 1 width first
+    mode = 2 height first
+    mode = 3 width and height
+    mode = 4 center crop origin size
+    mode = 5 center crop default size
+    :param inpath:
+    :param savepath:
+    :param width:
+    :param mode:
+    :return:
+    """
+    import PIL
+    img = PIL.Image.open(inpath)
+    w = int(img.size[0])
+    h = int(img.size[1])
+
+    if mode == 1:
+        width = int(long)
+        height = int(width/w*h)
+        img = img.resize((width, height), PIL.Image.ANTIALIAS)
+    if mode == 2:
+        height = int(long)
+        width = int(height / h * w)
+        img = img.resize((width, height), PIL.Image.ANTIALIAS)
+    if mode == 3:
+        if w>h:
+            height = int(long)
+            width = int(height / h * w)
+        else:
+            height = int(long)
+            width = int(height / h * w)
+        img = img.resize((width, height), PIL.Image.ANTIALIAS)
+    if mode == 4 or mode ==5:
+        if w >=h:
+            l=int((w-h)/2)
+            t=int(0)
+            r=int((w+h)/2)
+            b=int(h)
+        else:
+            l = int(0)
+            t = int((h-w)/2)
+            r = int(w)
+            b = int((h+w)/2)
+        region = (l,t,r,b)
+        img = img.crop(region)
+        if mode ==5:
+            img = img.resize((int(long), int(long)), PIL.Image.ANTIALIAS)
+    img.save(savepath)
