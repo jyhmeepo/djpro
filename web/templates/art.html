@@ -1,0 +1,26 @@
+{% extends 'web_base.html' %}
+{% block content %}
+
+<div>
+    <div class="h3">{{ art.aname }}</div>
+</div>
+    {% for x in forum %}
+        <a class="btn btn-warning btn-xs" href="/forum/{{ x.id }}/">{{ x.fname }}</a>
+    {% endfor %}
+    <hr>
+
+    {% if art.videourl %}
+        <div class="col-xs-12 text-center" style="background-color: #000;margin: 0 0 10px 0;"><video src="{{ art.videourl }}" autoplay controls style="max-width: 100%"></video></div>
+    {% endif %}
+
+    {% if art.content %}
+        <div class="col-xs-12" style="margin: 0 0 10px 0;">{{ art.content }}</div>
+    {% endif %}
+
+{#    <div class="row">#}
+    {% for x in image %}
+        <img src="/{{ x.iurl }}" alt="" style="max-width: 100%;margin-bottom: 10px;">
+    {% endfor %}
+{#    </div>#}
+    <div class="text-center">{{ show|safe }}</div>
+{% endblock %}

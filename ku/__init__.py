@@ -60,16 +60,22 @@ def F(key=None,value=None,path='.'):
         op.write(value)
         op.close()
 
-def bga(req,data={}):
+def handle_uploaded_file(f):
     """
-    tmp code as a view in blog
-    :param req:
-    :param data:
+    save upload file
+    :param f:
     :return:
     """
-    req = req
-    from django.template import loader
-    return loader.render_to_string('bga.html',data)
+    import os
+    import time
+    file_path = 'static/img/'+str(int(time.time()))+'.'+getext(f.name)
+    data = {}
+    data['path'] = file_path
+    data['name'] = 'name'
+    with open(file_path, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+    return data
 
 def read_image(oldpath,newpath="static/img/"):
     import os
@@ -81,6 +87,7 @@ def read_image(oldpath,newpath="static/img/"):
     if os.path.exists(oldpath):
         re = os.listdir(oldpath)
         newpathadd = newpath+ time.strftime("%y%m%d") + '/' + str(int(time.time() * 100000)) + '/'
+        data['path'] = newpathadd
         os.makedirs(newpathadd)
         os.rename(oldpath, newpathadd)
         for x in re:
@@ -171,10 +178,6 @@ class Page():
     def show(self):
         import re
         p = self.path
-        pfirst =''
-        ppre = ''
-        pnext = ''
-        plast = ''
         if re.search("/$", p):
             p = p[:-1]
         pa = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*", p)[0]

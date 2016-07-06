@@ -4,7 +4,7 @@ from .models import *
 # Create your views here.
 from django.template import loader
 
-def liebiao(data={},req=None):
+def liebiao(fid,req=None):
     d = {}
     d['re'] = 'shijian'
     d['re2'] = 'meinv'

@@ -1,0 +1,19 @@
+{% extends 'web_base.html' %}
+{% block content %}
+
+    <div class="h3">{{ forum.fname }}</div>
+{#    <div class="text-center">{{ show|safe }}</div>#}
+    <div class="row">
+    {% for x in art %}
+        <div class="col-xs-6 col-sm-4 col-lg-4">
+            <a href="/{{ x.id }}.html" class="">
+                <span class="panel panel-default">
+                    <img src="/{{ x.faceurl }}" alt="" style="max-width: 100%;">
+                    <div class="text-center">{{ x.aname }}</div>
+                </span>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    <div class="text-center">{{ show|safe }}</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'web_base.html' %}
+{% block content %}
+
+{#<div>#}
+{#    <a href="/web_read/" class="btn btn-danger">read</a>#}
+{#    <a href="/web_delete/" class="btn btn-danger">clear_sql</a>#}
+{#</div>#}
+    {% for x in forum %}
+        <a class="h3" href="/forum/{{ x.id }}/" style="margin-bottom: 10px;">{{ x.fname }}</a>
+    {% endfor %}
+    <hr>
+    <div class="row">
+    {% for x in period %}
+        <div class="col-xs-6 col-sm-3 col-lg-2">
+            <a href="/{{ x.id }}.html" class="">
+                <span class="panel panel-default">
+                    <img src="/{{ x.pface }}" alt="" style="max-width: 100%;">
+                    <div>{{ x.pname }}</div>
+                </span>
+            </a>
+        </div>
+    {% endfor %}
+    </div>
+    {{ bi }}
+
+{% endblock %}

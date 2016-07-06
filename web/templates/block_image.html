@@ -1,0 +1,13 @@
+        <a href="/forum/{{ forum.id }}"><div class="h3">{{ forum.fname }}</div></a>
+       <div class="row">
+            {% for x in art %}
+        <div class="col-xs-6 col-sm-3 col-lg-3">
+            <a href="/{{ x.id }}.html" class="">
+               <span class="">
+                   <img src="/{{ x.faceurl }}" alt="" style="max-width: 100%;">
+                   <div class="text-center">{{ x.aname }}</div>
+               </span>
+            </a>
+        </div>
+        {% endfor %}
+       </div>

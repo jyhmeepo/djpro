@@ -1,0 +1,16 @@
+{% extends 'web_base.html' %}
+{% block content %}
+    <form action="" method="post">
+        {% for x in forum %}
+            {% csrf_token %}
+            <input type="radio" name="fid" value="{{ x.id }}">{{ x.fname }}-
+        {% endfor %}
+        <hr>
+        <input type="submit">
+    </form>
+
+    <hr>
+    {{ path }}
+    {{ sid }}
+    11
+{% endblock %}

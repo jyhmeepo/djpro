@@ -16,43 +16,21 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from task.views import *
-from blog.views import *
-
-from blog.sec import *
 from read.views import *
-from img.views import *
+from web.views import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-
-    url(r'^$', img),
-    url(r'^pub/$', pub),
-    url(r'^show/$', show),
-    url(r'^du/$', read_in_sql),
-    url(r'^clear_sql/$', clear_sql),
-    url(r'^series/(\d{1,4})/$', series),
-    url(r'^series/(\d{1,4})_(\d{1,4})/', series),
-    url(r'^(\d{1,4})\.html$', image),
-    url(r'^(\d{1,4})_(\d{1,4})\.html$', image),
-
-    url(r'^blog/$', blog),
-    url(r'^blog2/$', blog2),
-    url(r'^blogadd/', blogadd),
-    url(r'^blogde/', blogde),
-    url(r'^blog/(\d*)\.html$', blogcon,name='blogcontent'),
-    url(r'^blogfile/$', blogfile),
-
-    # url(r'^about/$', About.as_view()),
-    url(r'^about/$', bga),
+    url(r'^$', main),
+    url(r'^forum/(\d{1,4})/$', forum),
+    url(r'^forum/(\d{1,4})_(\d{1,4})/', forum),
+    url(r'^(\d{1,4})\.html$', art),
+    url(r'^(\d{1,4})_(\d{1,4})\.html$', art),
+    url(r'^web_read/$', read_image_in_sql),
+    url(r'^web_delete/$', web_delete),
 
     url(r'^read/$', read),
 
-    url(r'^userregister/$', userregister),
-    url(r'^userlogin/$', userlogin),
+    url(r'^admin/', admin.site.urls),
 
-    url(r'^renwu/', renwu),
-    url(r'^ren4/$', ren4),
-    url(r'^ren4/\d{1,4}\.html$', ren4),
 
 ]
