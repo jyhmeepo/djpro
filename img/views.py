@@ -66,9 +66,25 @@ def image(req,id,page=1):
     data={}
     import re
     # if re.match(r'html',req.path):
-    return HttpResponse(str(req.path)[-1])
+    # p = req.get_full_path()
+    # p2 = "/26.html"
+    # pt =''
+    # for x in p:
+    #     pt = pt+x
+    # pa = re.match(r'l', p[-1])
+
+    # pa = re.findall(r'_*\d*\.html',p)
+
+    # if p == "/26.html":
+    #     px = 1
+    # else:
+    #     px = 0
+
+
+    # return HttpResponse(pa)
+
     count = Image.objects.filter(pid =id).count()
-    page = Page(count,2,page,req.path)
+    page = Page(count,2,page,req.get_full_path())
     data['image'] =Image.objects.filter(pid=id)[page.start:page.limit]
     data['show'] = page.show()
     # data['req'] =req

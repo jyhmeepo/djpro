@@ -176,9 +176,16 @@ class Page():
         pnext = ''
         plast = ''
 
-        r= re.match(r'html', str(p))
+        pa = re.findall(r"(.*\/\d*)_*(\d*)\.html", str)[0]
 
-        if r:
+        # # p = str(p).encode('utf-8')
+        # # p = 'html'.decode('utf-8')
+        # pathext= re.findall(r'_*\d*\.html', p)[0]
+        # # r= re.match(r'html', "html")
+        # pathextlength = len(pathext)
+        # p=p[:-pathextlength]
+
+        if 1:
             pfirst = '1'
             # ppre = p[:-5] +'_'+str(self.pagenow-1) + p[-5:]
             ppre = str(self.pagenow - 1) + '.html'
@@ -207,7 +214,7 @@ class Page():
         <li><a href='%s'>next</a></li>
         <li><a href='%s'>last</a></li>
         </ul>%s
-        """%(pfirst,ppre,pnext,plast,p)
+        """%(pfirst,ppre,pnext,plast,pa)
 
 
 
