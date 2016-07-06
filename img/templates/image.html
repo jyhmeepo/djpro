@@ -6,7 +6,7 @@
     {% endfor %}
 
     <hr>
-    {{ show|safe }}
+    <div class="text-center">{{ show|safe }}</div>
     <div class="row">
     {% for x in image %}
         <div class="col-xs-12" style="margin-bottom: 10px;">
@@ -14,5 +14,5 @@
         </div>
     {% endfor %}
     </div>
-
+     <div class="text-center">{{ show|safe }}</div>
 {% endblock %}

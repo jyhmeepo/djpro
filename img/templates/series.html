@@ -1,5 +1,6 @@
 {% extends 'img_base.html' %}
 {% block content %}
+    <div class="text-center">{{ show|safe }}</div>
     <div class="row">
     {% for x in period %}
         <div class="col-sm-2">
@@ -9,5 +10,7 @@
         </a>
         </div>
     {% endfor %}
+
     </div>
+    <div class="text-center">{{ show|safe }}</div>
 {% endblock %}

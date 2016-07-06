@@ -35,12 +35,13 @@ def handle_uploaded_file(f):
     return data
 
 def read_period(path,sid=0):
+    import time
     re =read_image(path,"static/img/",)
     if re['url']:
         pfaceurlold = re['url'][0]
         if not os.path.exists("static/img/face/"):
             os.makedirs("static/img/face/")
-        pfaceurlnew = "static/img/face/ff.jpg"
+        pfaceurlnew = "static/img/face/"+str(int(time.time() * 100000))+".jpg"
         resize_image(pfaceurlold, pfaceurlnew, 360, 5)
         Period.objects.create(pname=re['name'],sid=sid,pface = pfaceurlnew)
         last =Period.objects.last()
@@ -56,35 +57,19 @@ def img(req):
     data['series'] = Series.objects.values().order_by("-id")
     return render(req,'img.html',data)
 
-def series(req,sid):
+def series(req,sid,page=1):
     data={}
-    data['period'] = Period.objects.filter(sid=sid)
+    count = Period.objects.filter(sid=sid).count()
+    page = Page(count, 2, page, req.get_full_path())
+    data['show'] = page.show()
+    data['period'] = Period.objects.filter(sid=sid)[page.start:page.limit]
     return render(req,'series.html',data)
 
 
 def image(req,id,page=1):
     data={}
-    import re
-    # if re.match(r'html',req.path):
-    # p = req.get_full_path()
-    # p2 = "/26.html"
-    # pt =''
-    # for x in p:
-    #     pt = pt+x
-    # pa = re.match(r'l', p[-1])
-
-    # pa = re.findall(r'_*\d*\.html',p)
-
-    # if p == "/26.html":
-    #     px = 1
-    # else:
-    #     px = 0
-
-
-    # return HttpResponse(pa)
-
     count = Image.objects.filter(pid =id).count()
-    page = Page(count,2,page,req.get_full_path())
+    page = Page(count,1,page,req.get_full_path())
     data['image'] =Image.objects.filter(pid=id)[page.start:page.limit]
     data['show'] = page.show()
     # data['req'] =req

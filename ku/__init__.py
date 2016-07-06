@@ -175,46 +175,34 @@ class Page():
         ppre = ''
         pnext = ''
         plast = ''
+        if re.search("/$", p):
+            p = p[:-1]
+        pa = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*", p)[0]
+        def crurl(page,tu,pagenum):
+            if int(page) <1:
+                return ''
+            if int(page) > pagenum:
+                return ''
+            return "href='"+tu[0]+tu[1]+'_'+str(page)+tu[3]+"'"
 
-        pa = re.findall(r"(.*\/\d*)_*(\d*)\.html", str)[0]
+        pfirst = '1'
+        ppre = (self.pagenow - 1)
+        pnext = (self.pagenow + 1)
+        plast = (self.pagenum)
 
-        # # p = str(p).encode('utf-8')
-        # # p = 'html'.decode('utf-8')
-        # pathext= re.findall(r'_*\d*\.html', p)[0]
-        # # r= re.match(r'html', "html")
-        # pathextlength = len(pathext)
-        # p=p[:-pathextlength]
-
-        if 1:
-            pfirst = '1'
-            # ppre = p[:-5] +'_'+str(self.pagenow-1) + p[-5:]
-            ppre = str(self.pagenow - 1) + '.html'
-            pnext = str(self.pagenow + 1) + '.html'
-            plast = str(self.pagenum) + '.html'
-        # r2 = re.match(r'\/$',p)
-        # if r2:
-        #     pass
-            # pfirst = p
-            # ppre = str(self.pagenow - 1) + '.html'
-            # pnext = str(self.pagenow + 1) + '.html'
-            # plast = str(self.pagenum) + '.html'
-
-        # pfirst = str(self.pagenow)+'.html'
-
-        # pfirst = str(self.pagenow)+'.html'
-        # pfirst = p[:-5] + p[-5:]
-        # pfirst = p[:-5] + p[-5:]
-        # return self.path
-
+        pfirst = crurl(pfirst,pa,self.pagenum)
+        ppre = crurl(ppre,pa,self.pagenum)
+        pnext = crurl(pnext,pa,self.pagenum)
+        plast = crurl(plast,pa,self.pagenum)
 
         return """
         <ul class='pagination'>
-        <li><a href='%s'>first</a></li>
-        <li><a href='%s'>pre</a></li>
-        <li><a href='%s'>next</a></li>
-        <li><a href='%s'>last</a></li>
-        </ul>%s
-        """%(pfirst,ppre,pnext,plast,pa)
+        <li><a %s >first</a></li>
+        <li><a %s >pre page</a></li>
+        <li><a %s >next page</a></li>
+        <li><a %s >last</a></li>
+        </ul>
+        """%(pfirst,ppre,pnext,plast)
 
 
 

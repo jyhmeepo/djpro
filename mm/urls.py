@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^du/$', read_in_sql),
     url(r'^clear_sql/$', clear_sql),
     url(r'^series/(\d{1,4})/$', series),
+    url(r'^series/(\d{1,4})_(\d{1,4})/', series),
     url(r'^(\d{1,4})\.html$', image),
     url(r'^(\d{1,4})_(\d{1,4})\.html$', image),
 

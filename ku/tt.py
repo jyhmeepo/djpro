@@ -16,10 +16,12 @@ import datetime
 # if r:
 #     print(r)
 
-str ='/1ni/12_1.html'
-str2 ='/1ni/12'
+# str ='/s/12_1.html'
+str ='/series/1_1/'
 
-
+if re.search("/$",str):
+    str = str[:-1]
+print(str)
 print(
-    re.findall(r"(.*\/\d*)_*(\d*)\.html", str)
+    re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*", str)
 )
