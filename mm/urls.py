@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-
 from read.views import *
 from web.views import *
 
@@ -27,6 +26,7 @@ urlpatterns = [
     url(r'^(\d{1,4})_(\d{1,4})\.html$', art),
     url(r'^web_read/$', read_image_in_sql),
     url(r'^web_delete/$', web_delete),
+    url(r'^search/$', search),
 
     url(r'^read/$', read),
 

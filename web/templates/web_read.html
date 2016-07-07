@@ -5,7 +5,6 @@
             {% csrf_token %}
             <input type="radio" name="fid" value="{{ x.id }}">{{ x.fname }}-
         {% endfor %}
-        <hr>
         <input type="submit">
     </form>
 

@@ -46,7 +46,7 @@ def block_image(fid={},req=None):
 def main(req):
     data ={}
     data['forum'] = Forum.objects.all()
-    data['bi'] = block_image(1)+block_image(2)
+    data['bi'] = block_image(1)
     return render(req,'main.html',data)
 
 def forum(req,fid,page=1):
@@ -56,8 +56,18 @@ def forum(req,fid,page=1):
         page = Page(count, 4, page, req.get_full_path())
         data['show'] = page.show()
         data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
-    # data['art'] = Art.objects.all()
     data['forum'] = Forum.objects.get(id=fid)
+    return render(req,'forum.html',data)
+
+def search(req,page=1):
+    data = {}
+    count = Art.objects.all().count()
+    if count:
+        page = Page(count, 4, page, req.get_full_path())
+        data['show'] = page.show()
+    #     data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
+    # data['forum'] = Forum.objects.get(id=fid)
+    data['art'] = Art.objects.all()
     return render(req,'forum.html',data)
 
 def art(req,aid,page=1):

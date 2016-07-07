@@ -110,7 +110,7 @@ def resize_image(inpath,savepath,long=300,mode=1):
     :param mode:
     :return:
     """
-    import PIL
+    import PIL.Image
     img = PIL.Image.open(inpath)
     w = int(img.size[0])
     h = int(img.size[1])
@@ -180,7 +180,10 @@ class Page():
         p = self.path
         if re.search("/$", p):
             p = p[:-1]
-        pa = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*", p)[0]
+        if re.search("\?", p):
+            p = p.split('?')
+            p = p[0][:-1] + '?' + p[1]
+        pa = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*(\?.*)*", p)[0]
         def crurl(page,tu,pagenum):
             if int(page) <1:
                 return ''
