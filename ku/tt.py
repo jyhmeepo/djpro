@@ -1,4 +1,3 @@
-from sqlparse import parse
 from ku import *
 import math
 import random
@@ -34,14 +33,14 @@ def makepage(url):
     if re.search("/$", path):
         path = path[:-1]
     match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
-    html = crurl(2,makepage(),10)
+    # html = crurl(2,match,10)
     if urlin.query:
         urlout = path + '?'+urlin.query
         
     return match
 
 # url = "http://www.baidu.com/search/1_1.html?s=1&b=2#jj"
-url = "http://www.baidu.com/search/1_1/?s=1&b=2#jj"
+# url = "http://www.baidu.com/search/1_1/?s=1&b=2#jj"
 url = "http://www.baidu.com/search/?s=1&b=2#jj"
 re = makepage(url)
 print(
