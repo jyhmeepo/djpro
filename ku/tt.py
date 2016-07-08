@@ -30,18 +30,35 @@ def makepage(url):
     # data['query'] = urlin.query
     # data['fragment'] = urlin.fragment
     path = urlin.path
-    if re.search("/$", path):
+    match = re.findall(r"(\/\D*/)(\d*)(_*\d*)(\.html)*", path)
+    return match
+
+    if re.search("\D/$", path):
         path = path[:-1]
-    match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
+        match = re.findall(r"(\/\D*/)(\d*)(_*\d*)(\.html)*", path)
+    elif re.search("\d/$", path):
+        path = path[:-1]
+        match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
+    elif re.search("html", path):
+        match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
+
+
     # html = crurl(2,match,10)
     if urlin.query:
         urlout = path + '?'+urlin.query
         
     return match
+    # return path
 
-# url = "http://www.baidu.com/search/1_1.html?s=1&b=2#jj"
-# url = "http://www.baidu.com/search/1_1/?s=1&b=2#jj"
-url = "http://www.baidu.com/search/?s=1&b=2#jj"
+# url = "http://www.baidu.com/forum/1_1.html?s=1&b=2#jj"
+url = "http://www.baidu.com/forum/1.html?s=1&b=2#jj"
+
+# url = "http://www.baidu.com/search/?s=1&b=2#jj"
+# url = "http://www.baidu.com/search_1/?s=1&b=2#jj"
+#
+# url = "http://www.baidu.com/forum/1_2/"
+# url = "http://www.baidu.com/forum/1/"
+
 re = makepage(url)
 print(
     (re)
