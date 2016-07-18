@@ -58,3 +58,11 @@ class Image(models.Model):
     updatetime = models.IntegerField(blank=True, default=0)
     def __str__(self):
         return self.iurl
+
+class Url(models.Model):
+    webname = models.CharField(max_length=255,blank=True,default='')
+    weburl = models.CharField(max_length=255,blank=True,default='')
+    status = models.IntegerField(blank=True, default=1)
+    sort = models.IntegerField(blank=True, default=1)
+    def __str__(self):
+        return self.webname

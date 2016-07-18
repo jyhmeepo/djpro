@@ -29,8 +29,6 @@ def read_period(path,fid=0):
         for x in re['url']:
             Image.objects.create(aid = last.id,iurl = x,fid=fid)
 
-
-
 # -----------------------------fucntion-end------------------------------------------e
 
 # -----------------------------block-start------------------------------------------e
@@ -46,7 +44,8 @@ def block_image(fid={},req=None):
 def main(req):
     data ={}
     data['forum'] = Forum.objects.all()
-    data['bi'] = block_image(1)
+    # data['bi'] = block_image(1)
+    data['url'] = Url.objects.all()
     return render(req,'main.html',data)
 
 def forum(req,fid,page=1):
@@ -68,7 +67,7 @@ def search(req,page=1):
         # data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
     # data['forum'] = Forum.objects.get(id=fid)
         data['art'] = Art.objects.all()[page.start:page.limit]
-        data['serach'] = req.GET.get('search','')
+        data['search'] = req.GET.get('search','')
     return render(req,'forum.html',data)
 
 def art(req,aid,page=1):

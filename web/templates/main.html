@@ -33,4 +33,16 @@
     </div>
     {{ bi }}
 
+
+    <div class="" style="height: 10px;"></div>
+    <div class="panel panel-default">
+        <div class="panel-heading">友情链接</div>
+        <div class="panel-body">
+            {% for x in url %}
+                <a href="{{ x.weburl }}">{{ x.webname }}</a>
+            {% endfor %}
+            
+        </div>
+    </div>
+
 {% endblock %}
