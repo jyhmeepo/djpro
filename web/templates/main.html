@@ -1,6 +1,14 @@
 {% extends 'web_base.html' %}
 {% block content %}
 
+    <form class="form-search" action="/search/" method="get">
+    <div class="input-group">
+        <input name="search" type="search" class="form-control form-group-lg " placeholder="搜索模特、专辑" value="{{ serach }}">
+        <span class="input-group-btn">
+            <input class="btn btn-primary " type="submit" value="搜索">
+        </span>
+    </div>
+    </form>
 
 
 <div>

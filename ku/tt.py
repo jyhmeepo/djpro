@@ -8,58 +8,28 @@ import re
 from django.core.urlresolvers import reverse
 import datetime
 import urllib3
+import urllib.parse
 
+url = [
+    "http://www.baidu.com/forum/1_1.html?s=1&b=2#jj",
+    "http://www.baidu.com/forum/1.html?s=1&b=2#jj",
 
-def crurl(page, tu, pagenum):
-    if int(page) < 1:
-        return ''
-    if int(page) > pagenum:
-        return ''
-    return "href='" + tu[0] + tu[1] + '_' + str(page) + tu[3] + "'"
+    "http://www.baidu.com/search/?s=1&b=2#jj",
+    "http://www.baidu.com/search_1/?s=1&b=2#jj",
 
-def makepage(url):
-    import urllib.parse
-    import re
-    urlin = urllib.parse.urlparse(url)
+    "http://www.baidu.com/forum/1/",
+    "http://www.baidu.com/forum/1_2/",
+]
 
-    # data = {}
-    # data['scheme'] = urlin.scheme
-    # data['netloc'] = urlin.netloc
-    # data['path'] = urlin.path
-    # data['params'] = urlin.params
-    # data['query'] = urlin.query
-    # data['fragment'] = urlin.fragment
-    path = urlin.path
-    match = re.findall(r"(\/\D*/)(\d*)(_*\d*)(\.html)*", path)
-    return match
-
-    if re.search("\D/$", path):
-        path = path[:-1]
-        match = re.findall(r"(\/\D*/)(\d*)(_*\d*)(\.html)*", path)
-    elif re.search("\d/$", path):
-        path = path[:-1]
-        match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
-    elif re.search("html", path):
-        match = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html)*", path)
-
-
-    # html = crurl(2,match,10)
-    if urlin.query:
-        urlout = path + '?'+urlin.query
-        
-    return match
-    # return path
-
-# url = "http://www.baidu.com/forum/1_1.html?s=1&b=2#jj"
-url = "http://www.baidu.com/forum/1.html?s=1&b=2#jj"
-
-# url = "http://www.baidu.com/search/?s=1&b=2#jj"
-# url = "http://www.baidu.com/search_1/?s=1&b=2#jj"
-#
-# url = "http://www.baidu.com/forum/1_2/"
-# url = "http://www.baidu.com/forum/1/"
-
-re = makepage(url)
-print(
-    (re)
-)
+uu = "http://www.baidu.com/search/?s=1&b=2#jj"
+u = urllib.parse.urlparse(uu)
+# u = urllib.parse.urlunparse(u)
+print(u)
+sm(u)
+exit()
+# ---------------------------------------
+i = 1
+for x in url:
+    r =createpageurl(23,11,x)
+    print(r)
+    i = i + 1

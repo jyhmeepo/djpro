@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^web_read/$', read_image_in_sql),
     url(r'^web_delete/$', web_delete),
     url(r'^search/$', search),
+    url(r'^search_(\d*)/$', search),
 
     url(r'^read/$', read),
 

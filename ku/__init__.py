@@ -148,6 +148,47 @@ def resize_image(inpath,savepath,long=300,mode=1):
             img = img.resize((int(long), int(long)), PIL.Image.ANTIALIAS)
     img.save(savepath)
 
+def createpageurl(pageout,pagenum,path):
+    import urllib.parse
+    import re
+    urlin = urllib.parse.urlparse(path)
+    path = urlin.path
+    res = 'none'
+    res = path.split('/')
+
+    rr = ''
+
+    if res[-1] != '':
+        """xinyemian"""
+        rr = 'html'
+        rr = re.findall('(\d*)_*(\d*)(\.html)',res[-1])
+        # rr = rr[0][0]
+        res[-1] = rr[0][0] + '_' + str(pageout)+rr[0][2]
+    elif re.search('^\d', res[-2]):
+        if re.search('_', res[-2]):
+            rr = res[-2].split('_')
+            res[-2] = rr[0] + '_' + str(pageout)
+        else:
+            rr = 'mei xia hua xian'
+            res[-2] = res[-2] + '_' + str(pageout)
+    elif re.search('\w', res[-2]):
+        if re.search('_', res[-2]):
+            rr = res[-2].split('_')
+            res[-2] = rr[0] + '_' + str(pageout)
+        else:
+            res[-2] =res[-2]+'_'+str(pageout)
+
+    s = '/'
+    # print('oldurl:',path)
+    # print('newurl:', s.join(res))
+    # print(rr)
+    # print(res)
+    pathout = s.join(res)
+    if urlin.query:
+        pathout = pathout+'?'+urlin.query
+    return "href='" + pathout + "'"
+
+
 class Page():
 
     pagecount=1
@@ -175,31 +216,26 @@ class Page():
             p=self.pagenum
         return int(p)
 
+    # show the pagenation
     def show(self):
         import re
         p = self.path
-        if re.search("/$", p):
-            p = p[:-1]
-        if re.search("\?", p):
-            p = p.split('?')
-            p = p[0][:-1] + '?' + p[1]
-        pa = re.findall(r"(.*\/)(\d*)(_*\d*)(\.html$)*(\?.*)*", p)[0]
-        def crurl(page,tu,pagenum):
-            if int(page) <1:
-                return ''
-            if int(page) > pagenum:
-                return ''
-            return "href='"+tu[0]+tu[1]+'_'+str(page)+tu[3]+"'"
+
 
         pfirst = '1'
         ppre = (self.pagenow - 1)
         pnext = (self.pagenow + 1)
         plast = (self.pagenum)
 
-        pfirst = crurl(pfirst,pa,self.pagenum)
-        ppre = crurl(ppre,pa,self.pagenum)
-        pnext = crurl(pnext,pa,self.pagenum)
-        plast = crurl(plast,pa,self.pagenum)
+        if ppre < 1:
+            ppre = 1
+        if pnext >self.pagenum:
+            pnext=self.pagenum
+
+        pfirst = createpageurl(pfirst,self.pagenum,p)
+        ppre = createpageurl(ppre,self.pagenum,p)
+        pnext = createpageurl(pnext,self.pagenum,p)
+        plast = createpageurl(plast,self.pagenum,p)
 
         return """
         <ul class='pagination'>
@@ -208,18 +244,4 @@ class Page():
         <li><a %s >next page</a></li>
         <li><a %s >last</a></li>
         </ul>
-        """%(pfirst,ppre,pnext,plast)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        """ % (pfirst, ppre, pnext, plast)

@@ -53,7 +53,7 @@ def forum(req,fid,page=1):
     data = {}
     count = Art.objects.filter(fid=fid).count()
     if count:
-        page = Page(count, 4, page, req.get_full_path())
+        page = Page(count, 1, page, req.get_full_path())
         data['show'] = page.show()
         data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
     data['forum'] = Forum.objects.get(id=fid)
@@ -63,11 +63,12 @@ def search(req,page=1):
     data = {}
     count = Art.objects.all().count()
     if count:
-        page = Page(count, 4, page, req.get_full_path())
+        page = Page(count, 1, page, req.get_full_path())
         data['show'] = page.show()
-    #     data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
+        # data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
     # data['forum'] = Forum.objects.get(id=fid)
-    data['art'] = Art.objects.all()
+        data['art'] = Art.objects.all()[page.start:page.limit]
+        data['serach'] = req.GET.get('search','')
     return render(req,'forum.html',data)
 
 def art(req,aid,page=1):
