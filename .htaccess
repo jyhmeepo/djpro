@@ -1,0 +1,79 @@
+
+#防盗链过滤器
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteRule f /tool-hide [L]
+#RewriteRule (/find/)(\w*\.mp4) /tool-hide [L]
+#RewriteRule (/find)(/\w*\.mp4) /$2 [L]
+</IfModule>
+
+<IFModule mod_php5.c>
+php_value upload_max_filesize 2000M
+php_value post_max_size 2500M
+php_value max_file_uploads 50
+</IFModule>
+
+
+#防盗链设置
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{HTTP_REFERER} !^http://(.*)?nenmb.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?yueons.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?whlmsp.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://127.0.0.111/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?baidu.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?baiducontent.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?google.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?so.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?360webcache.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?sogou.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?bing.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?yahoo.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?xunlei.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?qq.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?weibo.com/.*$ [NC]
+RewriteCond %{HTTP_REFERER} !^http://(.*)?renren.com/.*$ [NC]
+RewriteRule upload http://www.google.com/ [R=302,L]
+</IfModule>
+##
+#
+#
+##GZIP压缩模块配置
+#<ifmodule mod_deflate.c>
+##启用对特定MIME类型内容的压缩
+#SetOutputFilter DEFLATE
+##SetEnvIfNoCase Request_URI .(?:gif|jpe?g|png|exe|t?gz|zip|bz2|sit|rar|pdf|mov|avi|mp3|mp4|rm)$ no-gzip dont-vary #设置不对压缩的文件
+#AddOutputFilterByType DEFLATE text/html image/jpeg image/png text/css text/plain text/xml application/x-httpd-php application/x-javascript #设置对压缩的文件
+#</ifmodule>
+#
+#
+##开启gizp
+#<ifModule mod_gzip.c>
+#          mod_gzip_on Yes
+#          mod_gzip_dechunk Yes
+#          mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
+#          mod_gzip_item_include handler ^cgi-script$
+#          mod_gzip_item_include mime ^text/.*
+#          mod_gzip_item_include mime ^application/x-javascript.*
+#          mod_gzip_item_exclude mime ^image/.*
+#          mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+#</ifModule>
+
+
+#第一种实时缩略图配置
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (\w*)\.(JPG|jpg|jpeg|png)_(\d*)_(\d*)\.(JPG|jpg|jpeg|png) /tool-resize-name-$1-ext-$2-w-$3-t-$4 [L]
+</IfModule>
+
+
+
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+ </IfModule>
+
