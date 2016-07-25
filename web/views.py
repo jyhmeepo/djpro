@@ -48,26 +48,32 @@ def main(req):
     data['url'] = Url.objects.all()
     return render(req,'main.html',data)
 
+    # data['art'] = Art.objects.all()
+    # return render(req,'forum.html',data)
+
 def forum(req,fid,page=1):
     data = {}
     count = Art.objects.filter(fid=fid).count()
     if count:
-        page = Page(count, 1, page, req.get_full_path())
+        page = Page(count, 3, page, req.get_full_path())
         data['show'] = page.show()
         data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
     data['forum'] = Forum.objects.get(id=fid)
+    data['contenttitle'] = data['forum'].fname
     return render(req,'forum.html',data)
 
 def search(req,page=1):
     data = {}
-    count = Art.objects.all().count()
+    # count = Art.objects.all().count()
+    data['search'] = req.GET.get('search', '')
+    data['contenttitle'] = '搜索:'+data['search']
+    count = Art.objects.filter(aname__contains=data['search']).count()
     if count:
         page = Page(count, 1, page, req.get_full_path())
         data['show'] = page.show()
         # data['art'] = Art.objects.filter(fid=fid)[page.start:page.limit]
     # data['forum'] = Forum.objects.get(id=fid)
-        data['art'] = Art.objects.all()[page.start:page.limit]
-        data['search'] = req.GET.get('search','')
+        data['art'] = Art.objects.filter(aname__contains=data['search'])[page.start:page.limit]
     return render(req,'forum.html',data)
 
 def art(req,aid,page=1):
@@ -79,6 +85,7 @@ def art(req,aid,page=1):
     data['art'] = Art.objects.get(id=aid)
     return render(req,'art.html',data)
 
+# read image into mysql
 def read_image_in_sql(req):
     data = {}
     data['forum'] = Forum.objects.values()
@@ -92,6 +99,7 @@ def read_image_in_sql(req):
         data['path'] = os.listdir(path)
     return render(req, 'web_read.html', data)
 
+# delete all data from mysql
 def web_delete(req):
     Art.objects.filter(id__lte=600).delete()
     Image.objects.filter(id__lte=600).delete()

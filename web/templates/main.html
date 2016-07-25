@@ -3,7 +3,7 @@
 
     <form class="form-search" action="/search/" method="get">
     <div class="input-group">
-        <input name="search" type="search" class="form-control form-group-lg " placeholder="搜索模特、专辑" value="{{ serach }}">
+        <input name="search" type="search" class="form-control form-group-lg " placeholder="搜索模特、专辑" value="{{ search }}">
         <span class="input-group-btn">
             <input class="btn btn-primary " type="submit" value="搜索">
         </span>
@@ -15,6 +15,8 @@
     <a href="/web_read/" class="btn btn-danger">read</a>
     <a href="/web_delete/" class="btn btn-danger">clear_sql</a>
 </div>
+
+    <hr>
     {% for x in forum %}
         <a class="h3" href="/forum/{{ x.id }}/" style="margin-bottom: 10px;">{{ x.fname }}</a>
     {% endfor %}
@@ -41,7 +43,7 @@
         <div class="panel-heading">友情链接</div>
         <div class="panel-body">
             {% for x in url %}
-                <a href="{{ x.weburl }}">{{ x.webname }}</a>
+                <a target="_blank" href="{{ x.weburl }}">{{ x.webname }}</a>
             {% endfor %}
             
         </div>

@@ -239,9 +239,9 @@ class Page():
 
         return """
         <ul class='pagination'>
-        <li><a %s >first</a></li>
-        <li><a %s >pre page</a></li>
-        <li><a %s >next page</a></li>
-        <li><a %s >last</a></li>
+        <li><a %s >首页</a></li>
+        <li><a %s >上一页</a></li>
+        <li><a %s >下一页</a></li>
+        <li><a %s >末页</a></li>
         </ul>
         """ % (pfirst, ppre, pnext, plast)
