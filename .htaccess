@@ -1,8 +1,15 @@
 
+<IfModule mod_rewrite.c>
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (\w*)\.(JPG|jpg|jpeg|png) / [L]
+</IfModule>
+
+
 #防盗链过滤器
 <IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteRule f /tool-hide [L]
+RewriteRule f / [L]
 #RewriteRule (/find/)(\w*\.mp4) /tool-hide [L]
 #RewriteRule (/find)(/\w*\.mp4) /$2 [L]
 </IfModule>
