@@ -30,7 +30,7 @@ urlpatterns = [
     url(r'^search_(\d*)/$', search),
 
     url(r'^read/$', read),
-    url(r'jpg', read),
+    url(r'resize/$', resize),
 
     url(r'^admin/', admin.site.urls),
 

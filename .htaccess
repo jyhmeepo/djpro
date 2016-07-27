@@ -1,4 +1,5 @@
 
+
 <IfModule mod_rewrite.c>
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
@@ -7,18 +8,13 @@ RewriteRule (\w*)\.(JPG|jpg|jpeg|png) / [L]
 
 
 #防盗链过滤器
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteRule f / [L]
-#RewriteRule (/find/)(\w*\.mp4) /tool-hide [L]
-#RewriteRule (/find)(/\w*\.mp4) /$2 [L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteRule f / [L]
+##RewriteRule (/find/)(\w*\.mp4) /tool-hide [L]
+##RewriteRule (/find)(/\w*\.mp4) /$2 [L]
+#</IfModule>
 
-<IFModule mod_php5.c>
-php_value upload_max_filesize 2000M
-php_value post_max_size 2500M
-php_value max_file_uploads 50
-</IFModule>
 
 
 #防盗链设置
@@ -69,18 +65,18 @@ RewriteRule upload http://www.google.com/ [R=302,L]
 
 
 #第一种实时缩略图配置
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule (\w*)\.(JPG|jpg|jpeg|png)_(\d*)_(\d*)\.(JPG|jpg|jpeg|png) /tool-resize-name-$1-ext-$2-w-$3-t-$4 [L]
-</IfModule>
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule (\w*)\.(JPG|jpg|jpeg|png)_(\d*)_(\d*)\.(JPG|jpg|jpeg|png) /tool-resize-name-$1-ext-$2-w-$3-t-$4 [L]
+#</IfModule>
 
 
 
-<IfModule mod_rewrite.c>
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
- </IfModule>
+#<IfModule mod_rewrite.c>
+#RewriteEngine on
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+# </IfModule>
 
